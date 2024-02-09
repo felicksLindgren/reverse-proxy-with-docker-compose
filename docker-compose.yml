@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context:  ./api
+      dockerfile: Dockerfile
+    expose:
+      - "5000"
+ 
+  proxy:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8084:443"
+    links:
+      - app
